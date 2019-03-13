@@ -2,7 +2,7 @@
 
 ### CSCI 4849: Assignment 7
 
-<p align="center">
+<p align="left">
     <a href="https://travis-ci.com/Burry/CSCI-4849-Switch-Control" target="_blank" alt="Build Status">
         <img src="https://travis-ci.com/Burry/CSCI-4849-Switch-Control.svg?token=pt6picbdu8zEpV9ixSLN&branch=master" />
     </a>
