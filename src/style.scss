@@ -1,0 +1,158 @@
+// Variables
+$font-stack-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+$white: #fff;
+$gray: #d9d9d9;
+$light-gray: #eee;
+$gray-90: #212529;
+
+// Functions
+@function color-yiq($color) {
+    $r: red($color);
+    $g: green($color);
+    $b: blue($color);
+
+    $yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+
+    @if ($yiq >= 150) {
+        @return $gray-90;
+    }
+
+    @else {
+        @return $white;
+    }
+}
+
+// Mixins
+@mixin selectable {
+    border-radius: 0.25em;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    &:focus {
+        outline: 0;
+        border-color: $white;
+        box-shadow: 0 4px 8px rgba($gray-90, 0.5);
+    }
+}
+
+@mixin button-variant($color, $color-dark: darken($color, 15%)) {
+    background-color: $color;
+    border-color: $color-dark;
+    color: color-yiq($color);
+
+    &:focus {
+        border-color: $color;
+    }
+
+    &:active {
+        background-color: $color-dark;
+        border-color: $color-dark;
+    }
+}
+
+// Styles
+body {
+    background-color: $white;
+    color: $gray-90;
+    margin: 3em;
+}
+
+#container {
+    max-width: calc(1030px + 2em);
+    margin: 3rem;
+}
+
+#calculator {
+    width: 396px;
+    background: $light-gray;
+    margin: auto;
+    padding: 1em;
+    text-align: center;
+    border: 1px solid $gray;
+    border-radius: 0.25em;
+
+    h1 {
+        font-size: large;
+        font-family: $font-stack-monospace;
+    }
+}
+
+button {
+    font-size: xx-large;
+    padding: 0.625em 1em;
+    border-width: 1px;
+    border-style: solid;
+    font-family: $font-stack-monospace;
+    margin: 5px;
+
+    @include button-variant($white);
+    @include selectable();
+
+    &:active {
+        background-color: $gray;
+        border-color: $gray;
+    }
+
+    &.meta {
+        @include button-variant(#f33);
+    }
+
+    &.function {
+        @include button-variant(#09f);
+    }
+}
+
+input {
+    font-size: xx-large;
+    font-family: $font-stack-monospace;
+    background: $white;
+    margin-bottom: 0.5em;
+    padding: 0 0.25em;
+    width: 11.5em;
+    height: 1.5em;
+    text-align: right;
+    border: 1px solid $gray;
+
+    @include selectable();
+}
+
+#settings {
+    border: 1px solid $gray;
+    padding: 10px;
+}
+
+h2 {
+    margin-top: 1.5em;
+}
+
+#comments {
+    max-width: 600px;
+    padding-bottom: 2em;
+}
+
+@media (max-width: 508px) {
+    body {
+        margin: 1em;
+    }
+
+    #calculator {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+    }
+
+    #comments {
+        margin: 1em;
+    }
+}
+
+@media (min-width: 900px) {
+    #container {
+        display: grid;
+        grid-template-columns: 430px auto;
+        grid-column-gap: 2em;
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+}

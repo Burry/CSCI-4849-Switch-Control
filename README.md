@@ -1,5 +1,5 @@
-# CSCI 4849: Assignment 7
+# Switch Control: Calculator
 
-### Switch Control
+### CSCI 4849: Assignment 7
 
-An application that can be fully controlled with one key (or a small number of keys)
+An application that can be fully controlled with a small number of keys

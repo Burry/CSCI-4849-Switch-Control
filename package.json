@@ -1,8 +1,9 @@
 {
     "name": "csci-4849-switch-control",
-    "version": "2.1.0",
+    "version": "1.0.0",
     "license": "MIT",
     "private": true,
+    "description": "An application that can be fully controlled with a small number of keys",
     "homepage": "https://csci-4849-switch-control.grantburry.com",
     "repository": {
         "type": "git",
@@ -10,11 +11,25 @@
     },
     "author": "Grant Burry <grant@burry.me> (https://grantburry.com)",
     "scripts": {
+        "build": "webpack --config config/webpack.config.prod.js",
+        "lint:js": "./node_modules/.bin/eslint src/**/*.js",
+        "lint:styles": "stylelint \"src/**/*.scss\"",
+        "lint:html": "pa11y-ci ./src/**/*.html",
+        "lint": "npm-run-all lint:js lint:styles lint:html",
+        "serve": "http-server ./build -o",
+        "start": "webpack-dev-server --config config/webpack.config.dev.js",
+        "start:prod": "npm-run-all build serve",
+        "predeploy": "npm-run-all build",
+        "deploy": "gh-pages -d build",
         "precommit": "lint-staged"
     },
     "eslintConfig": {
         "extends": "react-app"
     },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ],
     "lint-staged": {
         "ignore": [
             "package.json",
@@ -23,7 +38,7 @@
         "linters": {
             "*.{js,jsx}": [
                 "prettier --write",
-                "eslint --fix --rule 'import/no-extraneous-dependencies: off'",
+                "eslint --fix",
                 "git add --force"
             ],
             "*.{json,md}": [
@@ -33,18 +48,59 @@
             "*.{css,less,scss,sass,sss,styl}": [
                 "stylelint --fix",
                 "git add --force"
+            ],
+            "*.{htm,html}": [
+                "pa11y-ci",
+                "git add --force"
             ]
         }
     },
+    "dependencies": {
+        "jquery": "^3.3.1",
+        "systematize": "^3.2.4"
+    },
     "devDependencies": {
-        "eslint-config-airbnb": "^17.1.0",
+        "@babel/cli": "^7.2.3",
+        "@babel/core": "^7.3.4",
+        "@babel/preset-env": "^7.3.4",
+        "autoprefixer": "^9.4.10",
+        "babel-eslint": "^10.0.1",
+        "babel-loader": "^8.0.5",
+        "clean-webpack-plugin": "^2.0.0",
+        "css-loader": "^2.1.1",
+        "cssnano": "^4.1.10",
+        "dotenv": "^7.0.0",
+        "eslint": "^5.15.1",
+        "eslint-config-airbnb-base": "^13.1.0",
         "eslint-config-prettier": "^4.1.0",
         "eslint-plugin-flowtype": "^3.4.2",
+        "eslint-plugin-import": "^2.16.0",
+        "eslint-plugin-prettier": "^3.0.1",
+        "gh-pages": "^2.0.1",
+        "glob": "^7.1.3",
+        "html-inline-css-webpack-plugin": "^1.4.0",
+        "html-minifier-webpack-plugin": "^2.0.0",
+        "html-webpack-plugin": "^3.2.0",
+        "http-server": "^0.11.1",
         "lint-staged": "^8.1.5",
+        "mini-css-extract-plugin": "^0.5.0",
+        "node-sass": "^4.11.0",
+        "npm-run-all": "^4.1.5",
+        "optimize-css-assets-webpack-plugin": "^5.0.1",
+        "pa11y-ci": "^2.1.1",
+        "postcss-loader": "^3.0.0",
         "prettier": "^1.16.4",
+        "raw-loader": "^1.0.0",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.23.1",
         "stylelint": "^9.10.1",
         "stylelint-config-standard": "^18.2.0",
         "stylelint-order": "^2.1.0",
-        "stylelint-scss": "^3.5.4"
+        "stylelint-scss": "^3.5.4",
+        "url-loader": "^1.1.2",
+        "webpack": "^4.29.6",
+        "webpack-cli": "^3.2.3",
+        "webpack-dev-server": "^3.2.1",
+        "webpack-merge": "^4.2.1"
     }
 }
