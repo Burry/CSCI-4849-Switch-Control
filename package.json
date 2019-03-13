@@ -1,0 +1,50 @@
+{
+    "name": "csci-4849-switch-control",
+    "version": "2.1.0",
+    "license": "MIT",
+    "private": true,
+    "homepage": "https://csci-4849-switch-control.grantburry.com",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Burry/CSCI-4849-Switch-Control.git"
+    },
+    "author": "Grant Burry <grant@burry.me> (https://grantburry.com)",
+    "scripts": {
+        "precommit": "lint-staged"
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "lint-staged": {
+        "ignore": [
+            "package.json",
+            "**/**/*.test.js"
+        ],
+        "linters": {
+            "*.{js,jsx}": [
+                "prettier --write",
+                "eslint --fix --rule 'import/no-extraneous-dependencies: off'",
+                "git add --force"
+            ],
+            "*.{json,md}": [
+                "prettier --write",
+                "git add --force"
+            ],
+            "*.{css,less,scss,sass,sss,styl}": [
+                "stylelint --fix",
+                "git add --force"
+            ]
+        }
+    },
+    "devDependencies": {
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-config-prettier": "^4.1.0",
+        "eslint-plugin-flowtype": "^3.4.2",
+        "lint-staged": "^8.1.5",
+        "prettier": "^1.16.4",
+        "stylelint": "^9.10.1",
+        "stylelint-config-standard": "^18.2.0",
+        "stylelint-order": "^2.1.0",
+        "stylelint-scss": "^3.5.4"
+    }
+}
