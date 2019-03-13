@@ -19,7 +19,8 @@
         "serve": "http-server ./build -o",
         "start": "webpack-dev-server --config config/webpack.config.dev.js",
         "start:prod": "npm-run-all build serve",
-        "predeploy": "npm-run-all build",
+        "copy-cname": "cp CNAME build/CNAME",
+        "predeploy": "npm-run-all build copy-cname",
         "deploy": "gh-pages -d build",
         "precommit": "lint-staged"
     },

@@ -7,6 +7,8 @@ install:
 script:
     - yarn lint
     - yarn build
+before_deploy:
+    - yarn copy-cname
 deploy:
     provider: pages
     skip-cleanup: true
@@ -14,5 +16,5 @@ deploy:
     keep-history: true
     local-dir: build
     on:
-        branch: master
+        branch: gh-pages
         node: 'lts/*'
