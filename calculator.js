@@ -99,18 +99,6 @@ function clickSelectedItem() {
 // this function responds to user key presses
 // you'll rewrite this to control your interface using some number of keys
 $(document).keydown(function(event) {
-    // switch (event.keycode) {
-    //     case 37:
-    //         return selectPrevious();
-    //     case 38:
-    //         return selectUp();
-    //     case 39:
-    //         return selectNext();
-    //     case 40:
-    //         return selectDown();
-    //     default:
-    //         return;
-    // }
     if (event.keyCode === 37) selectPrevious();
     else if (event.keyCode === 38) selectUp();
     else if (event.keyCode === 39) selectNext();
