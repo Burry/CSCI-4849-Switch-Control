@@ -145,21 +145,19 @@ $('.calcButton').click(function calculate() {
         }
         // Save this as the most recent operation.
         operation = button;
-        // Clear expression
     } else if (button === 'C') {
+        // Clear expression
         resetInput();
         firstValue = null;
         operation = null;
         addingNumber = false;
+    } else if (button === '=' && firstValue && operation && addingNumber) {
         // Evaluate expression
-    } else if (button === '=') {
-        if (firstValue && operation && addingNumber) {
-            evaluateExpression();
-            // Clear our state
-            firstValue = null;
-            operation = null;
-            addingNumber = true;
-        }
+        evaluateExpression();
+        // Clear our state
+        firstValue = null;
+        operation = null;
+        addingNumber = true;
     }
 });
 
