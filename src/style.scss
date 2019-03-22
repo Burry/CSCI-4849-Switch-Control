@@ -131,13 +131,28 @@ h2 {
 
 @media (max-width: 508px) {
     body {
+        margin: 0;
+    }
+
+    #container {
         margin: 1em;
     }
 
     #calculator {
+        width: 100%;
         background-color: transparent;
         border: none;
         padding: 0;
+    }
+
+    button {
+        font-size: x-large;
+        padding: 0.5 0.5em;
+        margin: 0.25em;
+    }
+
+    input {
+        width: -webkit-fill-available;
     }
 
     #comments {
